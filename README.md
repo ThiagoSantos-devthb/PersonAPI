@@ -1,4 +1,4 @@
-<h2>Desenvolvendo um sistema de gerenciamento de pessoas em API REST com Spring Boot</h2>
+<h2>Sistema de gerenciamento de pessoas em API REST com Spring Boot</h2>
 
 Desenvolvimento de um pequeno sistema para o gerenciamento de pessoas de uma empresa através de uma API REST, criada com o Spring Boot.
 
