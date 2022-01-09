@@ -5,7 +5,9 @@ package com.thiagosantos.controller;
 import com.thiagosantos.dto.request.PersonDTO;
 import com.thiagosantos.dto.response.MessageResponseDTO;
 import com.thiagosantos.entity.Person;
+import com.thiagosantos.exception.PersonNotFoundException;
 import com.thiagosantos.service.PersonService;
+import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +38,13 @@ public class PersonController {
     @GetMapping
     public List<PersonDTO> listAll(){
        return personService.listAll();
-
     }
+
+    @GetMapping("/{id}")
+    public PersonDTO findById(@PathVariable Long id) throws PersonNotFoundException {
+        return personService.findById(id);
+    }
+
+
+
 }

@@ -4,12 +4,14 @@ package com.thiagosantos.service;
 import com.thiagosantos.dto.request.PersonDTO;
 import com.thiagosantos.dto.response.MessageResponseDTO;
 import com.thiagosantos.entity.Person;
+import com.thiagosantos.exception.PersonNotFoundException;
 import com.thiagosantos.mapper.PersonMapper;
 import com.thiagosantos.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,5 +40,16 @@ public class PersonService {
         return  allPeople.stream()
                 .map(personMapper :: toDTO)
                 .collect(Collectors.toList());
+    }
+
+    public PersonDTO findById(Long id) throws PersonNotFoundException {
+       Person person = personRepository.findById(id)
+                .orElseThrow(() -> new  PersonNotFoundException(id));
+        // Optional<Person> optionalPerson = personRepository.findById(id);
+        // if(optionalPerson.isEmpty()){
+           //  throw  new PersonNotFoundException(id);
+        // }
+        // return personMapper.toDTO(optionalPerson.get());
+        return personMapper.toDTO(person);
     }
 }
