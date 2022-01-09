@@ -2,13 +2,15 @@
 package com.thiagosantos.controller;
 
 
-import com.thiagosantos.dto.MessageResponseDTO;
+import com.thiagosantos.dto.request.PersonDTO;
+import com.thiagosantos.dto.response.MessageResponseDTO;
 import com.thiagosantos.entity.Person;
-import com.thiagosantos.repository.PersonRepository;
 import com.thiagosantos.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/people")
@@ -25,8 +27,8 @@ public class PersonController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MessageResponseDTO createPerson(@RequestBody Person person){
-      return personService.createPerson(person);
+    public MessageResponseDTO createPerson(@RequestBody @Valid PersonDTO personDTO){
+      return personService.createPerson(personDTO);
 
     }
 }

@@ -1,4 +1,4 @@
-package com.thiagosantos.dto;
+package com.thiagosantos.dto.response;
 
 
 import lombok.Builder;
